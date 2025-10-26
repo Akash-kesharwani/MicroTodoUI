@@ -1,0 +1,54 @@
+name: "Docker build and push"
+
+on: 
+  workflow_dispatch
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  docker-build-push:
+    runs-on: ubuntu-latest
+
+    env:
+      IMAGE_NAME: todomicro-ui
+      IMAGE_TAG: v1
+      ACR_NAME: appacrakash01
+      ACR_LOGIN_SERVER: appacrakash01.azurecr.io
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v5.0.0
+
+    - name: Azure Login
+      uses: Azure/login@v2.3.0
+      with:
+        client-id: cdb3e7ef-de15-4ab2-814a-3d8589fb4afc
+        tenant-id: 06af33d0-e479-4edf-a312-5cc8f0113164
+        subscription-id: b3e9b690-1f69-4cae-899a-6a1c65b2db91
+
+    - name: Login to ACR
+      run: |
+        az acr login --name $ACR_NAME
+
+    - name: Build docker image
+      run: |
+        docker build -t $IMAGE_NAME:$IMAGE_TAG .
+
+    - name: Tag image with ACR
+      run: |
+        docker tag $IMAGE_NAME:$IMAGE_TAG $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
+
+    - name: image push to ACR
+      run: |
+        docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE:TAG
+      
+
+    
+
+      
+      
+    
+  
+  
