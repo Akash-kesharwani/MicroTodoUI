@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: todocon
-        image: appacrakash01.azurecr.io/todomicro-ui:v2
+        image: appacrakash01.azurecr.io/todomicro-ui:v3
         ports:
         - containerPort: 80
 
