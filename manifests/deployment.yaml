@@ -17,4 +17,5 @@ spec:
         image: appacrakash01.azurecr.io/todomicro-ui:v1
         ports:
         - containerPort: 80
+        
     
