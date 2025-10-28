@@ -1,7 +1,9 @@
 name: "Docker build and push"
 
 on: 
-  workflow_dispatch
+  push:
+    branch:
+    - main
 
 permissions:
   id-token: write
