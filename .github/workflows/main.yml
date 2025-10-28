@@ -15,7 +15,7 @@ jobs:
 
     env:
       IMAGE_NAME: todomicro-ui
-      IMAGE_TAG: v1
+      IMAGE_TAG: v2
       ACR_NAME: appacrakash01
       ACR_LOGIN_SERVER: appacrakash01.azurecr.io
 
